@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Social Lead Engine — Social connection outreach and messaging sequences, backed by real humans who make sure your AI is running right. Powered by Hicks Marketing and Revenue Solutions.">
+  <meta property="og:title" content="Social Lead Engine — Social Outreach, Done Right">
+  <meta property="og:description" content="AI-powered social connection and messaging sequences — with a real human team behind it making sure everything runs smoothly.">
+  <title>Social Lead Engine — Social Outreach + Human Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:    #bc2c37;
+      --red-dk: #8f1f28;
+      --red-lt: #e04550;
+      --white:  #ffffff;
+      --ink:    #0d0c0c;
+      --off:    #f7f4f1;
+      --muted:  #6b6560;
+      --rule:   #e2ddd8;
+      --dark:   #111010;
+      --panel:  #181616;
+      --panel2: #201e1e;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.5; }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--dark);
+      border-bottom: 2px solid var(--red);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+    .nav-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px; letter-spacing: 1.5px;
+      color: var(--white); line-height: 1;
+    }
+    .nav-brand span { color: var(--red); }
+    .nav-links { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 12px; font-family: 'DM Mono', monospace;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.45); transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--red) !important; color: var(--white) !important;
+      padding: 8px 18px; border-radius: 2px; transition: background 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--red-dk) !important; }
+    .nav-login {
+      border: 1px solid rgba(255,255,255,0.15) !important;
+      color: rgba(255,255,255,0.6) !important;
+      padding: 7px 16px; border-radius: 2px;
+      transition: all 0.15s !important;
+    }
+    .nav-login:hover { border-color: rgba(255,255,255,0.4) !important; color: var(--white) !important; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); }
+
+    /* ── Ticker ── */
+    .ticker-wrap { background: var(--red); overflow: hidden; padding: 8px 0; white-space: nowrap; }
+    .ticker-track { display: inline-flex; animation: ticker 30s linear infinite; }
+    .ticker-item {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: rgba(255,255,255,0.65); text-transform: uppercase;
+      letter-spacing: 1.5px; padding: 0 2.5rem;
+    }
+    .ticker-item strong { color: #fff; }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--dark); position: relative; overflow: hidden;
+      padding: clamp(5rem, 11vw, 9rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 9vw, 7rem);
+    }
+    /* grid lines */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(188,44,55,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(188,44,55,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--red);
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; position: relative;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 2px; color: var(--red-lt);
+      margin-bottom: 1.5rem; animation: fadeUp 0.5s ease both;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--red-lt); animation: pulse 2s ease infinite;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.8rem, 8vw, 7rem);
+      line-height: 0.95; letter-spacing: 2px; color: var(--white);
+      margin-bottom: 1.75rem; animation: fadeUp 0.5s 0.1s ease both;
+    }
+    .hero h1 em { font-style: normal; color: var(--red); display: block; }
+    .hero-sub {
+      font-family: 'Lora', serif; font-size: 1.1rem;
+      color: rgba(255,255,255,0.5); line-height: 1.75;
+      max-width: 480px; margin-bottom: 2.5rem;
+      animation: fadeUp 0.5s 0.2s ease both;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.5s 0.3s ease both; }
+    .btn-red {
+      background: var(--red); color: var(--white); padding: 15px 32px;
+      font-size: 12px; font-weight: 500; border-radius: 2px;
+      display: inline-block; transition: background 0.15s;
+      font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .btn-red:hover { background: var(--red-dk); }
+    .btn-ghost {
+      background: transparent; color: rgba(255,255,255,0.55);
+      padding: 14px 32px; font-size: 12px; border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.18); display: inline-block;
+      transition: all 0.15s; font-family: 'DM Mono', monospace;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.45); }
+
+    /* Hero right — live dashboard mockup */
+    .hero-dash {
+      background: var(--panel); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px; overflow: hidden;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .dash-topbar {
+      background: var(--panel2); padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .dash-title { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px; }
+    .dash-status { display: flex; align-items: center; gap: 6px; }
+    .dash-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s ease infinite; }
+    .dash-status-label { font-family: 'DM Mono', monospace; font-size: 10px; color: #22c55e; letter-spacing: 0.5px; }
+    .dash-metrics {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .dash-metric { padding: 12px 14px; background: var(--panel); }
+    .dash-metric-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--white); letter-spacing: 1px; line-height: 1; }
+    .dash-metric-lbl { font-family: 'DM Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
+    .dash-metric-val.red { color: var(--red-lt); }
+    .dash-activity { padding: 12px 0; }
+    .dash-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 7px 14px; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .dash-row:last-child { border-bottom: none; }
+    .dash-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--panel2); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 9px; color: var(--red-lt); flex-shrink: 0; }
+    .dash-row-content { flex: 1; }
+    .dash-row-name { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.75); }
+    .dash-row-action { font-size: 10px; color: rgba(255,255,255,0.3); }
+    .dash-tag { font-family: 'DM Mono', monospace; font-size: 9px; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+    .dash-tag.connected { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .dash-tag.replied { background: rgba(188,44,55,0.15); color: var(--red-lt); }
+    .dash-tag.opened { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      background: var(--red); padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+    }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .stat { text-align: center; flex: 1; min-width: 120px; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--white); letter-spacing: 1px; line-height: 1; display: block; }
+    .stat-label { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+    /* ── Section base ── */
+    section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--red); display: block; margin-bottom: 1rem; }
+    .section-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 1px; line-height: 1; margin-bottom: 1rem; color: var(--ink); }
+    .section-sub { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 600px; margin-bottom: 3rem; }
+
+    /* ── How it works ── */
+    .how { background: var(--dark); }
+    .how .section-h { color: var(--white); }
+    .how .section-sub { color: rgba(255,255,255,0.4); }
+    .how .eyebrow { color: var(--red-lt); }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .how-step { background: var(--panel); padding: 2rem 1.75rem; }
+    .how-step.highlight { background: var(--red); }
+    .how-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 3rem;
+      letter-spacing: 1px; line-height: 1; margin-bottom: 1rem;
+      color: rgba(255,255,255,0.1);
+    }
+    .how-step.highlight .how-num { color: rgba(255,255,255,0.25); }
+    .how-step-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; line-height: 1.3; }
+    .how-step-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.65; }
+    .how-step.highlight .how-step-desc { color: rgba(255,255,255,0.7); }
+
+    /* ── Features ── */
+    .features { background: var(--off); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .feature-card {
+      background: var(--white); border: 1px solid var(--rule);
+      border-radius: 3px; padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .feature-icon {
+      width: 40px; height: 40px; border-radius: 2px;
+      background: rgba(188,44,55,0.08); border: 1px solid rgba(188,44,55,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-family: 'DM Mono', monospace; font-size: 12px; color: var(--red);
+    }
+    .feature-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 0.6rem; }
+    .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .feature-stat { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-family: 'DM Mono', monospace; font-size: 11px; color: var(--red); }
+
+    /* ── Channels ── */
+    .channels { background: var(--white); }
+    .channels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .channel-list { display: flex; flex-direction: column; gap: 1px; }
+    .channel-item {
+      background: var(--off); border: 1px solid var(--rule);
+      padding: 1.25rem 1.5rem; display: flex; gap: 1rem;
+      align-items: flex-start; cursor: pointer; transition: all 0.15s;
+    }
+    .channel-item:hover, .channel-item.active { background: var(--white); border-color: var(--red); }
+    .channel-item.active .channel-name { color: var(--red); }
+    .channel-icon { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--red); min-width: 24px; margin-top: 1px; }
+    .channel-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+    .channel-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .channel-visual {
+      background: var(--dark); border-radius: 6px;
+      padding: 2rem; border: 1px solid rgba(255,255,255,0.08);
+    }
+    .channel-visual-title { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.3); margin-bottom: 1.5rem; }
+    .channel-seq { display: flex; flex-direction: column; gap: 10px; }
+    .seq-step {
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .seq-num {
+      width: 24px; height: 24px; border-radius: 50%; background: rgba(188,44,55,0.2);
+      border: 1px solid rgba(188,44,55,0.4); display: flex; align-items: center;
+      justify-content: center; font-family: 'DM Mono', monospace; font-size: 10px;
+      color: var(--red-lt); flex-shrink: 0;
+    }
+    .seq-content { flex: 1; }
+    .seq-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+    .seq-detail { font-size: 11px; color: rgba(255,255,255,0.3); }
+    .seq-connector { margin-left: 11px; width: 1px; height: 10px; background: rgba(188,44,55,0.2); }
+
+    /* ── Pricing ── */
+    .pricing-sec { background: var(--dark); }
+    .pricing-sec .section-h { color: var(--white); }
+    .pricing-sec .section-sub { color: rgba(255,255,255,0.4); }
+    .pricing-sec .eyebrow { color: var(--red-lt); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.5rem; }
+    .pricing-card { background: var(--panel); padding: 2rem; }
+    .pricing-card.featured { background: var(--red); }
+    .pricing-name { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .pricing-card.featured .pricing-name { color: rgba(255,255,255,0.65); }
+    .pricing-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 1px; color: var(--white); line-height: 1; }
+    .pricing-num span { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.4); letter-spacing: 0; }
+    .pricing-tagline { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 0.5rem; line-height: 1.5; }
+    .pricing-card.featured .pricing-tagline { color: rgba(255,255,255,0.7); }
+    .pricing-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.25rem 0; }
+    .pricing-features { list-style: none; }
+    .pricing-features li { font-size: 12px; color: rgba(255,255,255,0.5); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 8px; }
+    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.85); }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li::before { content: '✓'; color: var(--red-lt); font-size: 11px; flex-shrink: 0; }
+    .pricing-card.featured .pricing-features li::before { color: rgba(255,255,255,0.6); }
+    .pricing-cta {
+      display: block; text-align: center; margin-top: 1.5rem;
+      padding: 11px; border-radius: 2px; font-family: 'DM Mono', monospace;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+      border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5);
+      transition: all 0.15s;
+    }
+    .pricing-cta:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+    .pricing-card.featured .pricing-cta {
+      background: var(--white); color: var(--red); border: none;
+    }
+    .pricing-card.featured .pricing-cta:hover { background: var(--off); }
+    .pricing-note {
+      font-size: 13px; color: rgba(255,255,255,0.3); text-align: center;
+      padding: 1rem;
+    }
+    .pricing-note a { color: var(--red-lt); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── DFY Upsell ── */
+    .dfy { background: var(--off); }
+    .dfy-inner {
+      max-width: 1100px; margin: 0 auto;
+      background: var(--ink); border-radius: 4px;
+      overflow: hidden; display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .dfy-left { padding: 3rem; }
+    .dfy-right {
+      background: var(--red); padding: 3rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .dfy-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.35); margin-bottom: 1rem; }
+    .dfy-right .dfy-eyebrow { color: rgba(255,255,255,0.6); }
+    .dfy-h { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 1px; color: var(--white); line-height: 1; margin-bottom: 1rem; }
+    .dfy-p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 1.5rem; }
+    .dfy-right .dfy-p { color: rgba(255,255,255,0.8); }
+    .dfy-list { list-style: none; margin-bottom: 2rem; }
+    .dfy-list li { font-size: 13px; color: rgba(255,255,255,0.4); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; gap: 8px; }
+    .dfy-list li::before { content: '—'; color: rgba(255,255,255,0.2); }
+    .dfy-right .dfy-list li { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.15); }
+    .dfy-right .dfy-list li::before { content: '✓'; color: rgba(255,255,255,0.5); }
+    .btn-white-sm { display: inline-block; background: var(--white); color: var(--red); padding: 12px 28px; border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; transition: opacity 0.15s; }
+    .btn-white-sm:hover { opacity: 0.9; }
+    .btn-outline-white { display: inline-block; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); padding: 11px 28px; border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.45); color: var(--white); }
+
+    /* ── Integrations ── */
+    .integrations { background: var(--white); }
+    .int-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+    .int-item { background: var(--white); padding: 1.5rem; text-align: center; }
+    .int-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+    .int-type { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+
+    /* ── Testimonials ── */
+    .testimonials { background: var(--off); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .testi-card { background: var(--white); border: 1px solid var(--rule); border-radius: 3px; padding: 1.75rem; }
+    .testi-quote { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: #4a4540; line-height: 1.75; margin-bottom: 1.25rem; border-left: 3px solid var(--red); padding-left: 1rem; }
+    .testi-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+    .testi-role { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-top: 2px; }
+
+    /* ── CTA ── */
+    .final-cta { background: var(--red); padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem); text-align: center; }
+    .final-cta .eyebrow { color: rgba(255,255,255,0.5); }
+    .final-cta .section-h { color: var(--white); max-width: 700px; margin: 0 auto 1rem; }
+    .cta-sub { font-family: 'Lora', serif; font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--red); padding: 15px 36px; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; border-radius: 2px; display: inline-block; transition: opacity 0.15s; }
+    .btn-white:hover { opacity: 0.9; }
+    .btn-wh-outline { background: transparent; color: rgba(255,255,255,0.7); padding: 14px 36px; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); display: inline-block; transition: all 0.15s; }
+    .btn-wh-outline:hover { color: var(--white); border-color: rgba(255,255,255,0.6); }
+
+    /* ── Footer ── */
+    footer { background: var(--ink); padding: 3rem clamp(1.5rem, 5vw, 4rem); border-top: 3px solid var(--red); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; }
+    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1.5px; color: var(--white); margin-bottom: 0.75rem; }
+    .footer-brand span { color: var(--red-lt); }
+    .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.65; }
+    .footer-col-title { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.25); margin-bottom: 1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); transition: color 0.15s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-bottom { max-width: 1100px; margin: 2.5rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); font-family: 'DM Mono', monospace; }
+
+    /* ── Mobile ── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 66px; left: 0; right: 0; background: var(--dark); border-bottom: 2px solid var(--red); padding: 1.5rem; gap: 1rem; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-dash { display: none; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .features-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .channels-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .dfy-inner { grid-template-columns: 1fr; }
+      .int-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .hero h1 { font-size: 3.2rem; }
+      .section-h { font-size: 2.2rem; }
+      .how-steps { grid-template-columns: 1fr; }
+      .int-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-brand">Social<span>Lead</span>Engine</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">What's included</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://3d2gj.share.hsforms.com/2zu6_ZSOXTRWmFcUdn9JFUg" target="_blank" rel="noopener">Full ghostwriting</a></li>
+    <li><a href="https://stopblendingin.com/" target="_blank" rel="noopener">Free EEC guide</a></li>
+    <li><a href="https://app.hicksmarketing.com/" target="_blank" rel="noopener" class="nav-cta">Start easy →</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── Ticker ── -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Social <strong>Connection Outreach</strong></span>
+    <span class="ticker-item">AI-powered <strong>Messaging Sequences</strong></span>
+    <span class="ticker-item">Real humans <strong>keeping it running right</strong></span>
+    <span class="ticker-item">Free account <strong>setup included</strong></span>
+    <span class="ticker-item">Social Lead <strong>Automation + Support</strong></span>
+    <span class="ticker-item">$199/mo · <strong>No contracts</strong></span>
+    <span class="ticker-item">Social <strong>Connection Outreach</strong></span>
+    <span class="ticker-item">AI-powered <strong>Messaging Sequences</strong></span>
+    <span class="ticker-item">Real humans <strong>keeping it running right</strong></span>
+    <span class="ticker-item">Free account <strong>setup included</strong></span>
+    <span class="ticker-item">Social Lead <strong>Automation + Support</strong></span>
+    <span class="ticker-item">$199/mo · <strong>No contracts</strong></span>
+  </div>
+</div>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow"><span class="live-dot"></span> Social outreach — human-managed, AI-powered</p>
+      <h1>Social Outreach.<br><em>Done Right.</em></h1>
+      <p class="hero-sub">AI-powered social connection requests and messaging sequences — with a real human team behind it making sure everything is dialed in, running smoothly, and actually working for your business.</p>
+      <div class="hero-actions">
+        <a href="https://app.hicksmarketing.com/" target="_blank" rel="noopener" class="btn-red">Start easy →</a>
+        <a href="https://help.lead-updates.com/" target="_blank" rel="noopener" class="btn-ghost">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-dash">
+      <div class="dash-topbar">
+        <span class="dash-title">Live Campaign Activity</span>
+        <div class="dash-status">
+          <span class="dash-status-dot"></span>
+          <span class="dash-status-label">Running</span>
+        </div>
+      </div>
+      <div class="dash-metrics">
+        <div class="dash-metric">
+          <div class="dash-metric-val red">247</div>
+          <div class="dash-metric-lbl">Prospects reached</div>
+        </div>
+        <div class="dash-metric">
+          <div class="dash-metric-val">38</div>
+          <div class="dash-metric-lbl">Replies today</div>
+        </div>
+        <div class="dash-metric">
+          <div class="dash-metric-val">6</div>
+          <div class="dash-metric-lbl">Meetings booked</div>
+        </div>
+      </div>
+      <div class="dash-activity">
+        <div class="dash-row">
+          <div class="dash-avatar">JM</div>
+          <div class="dash-row-content">
+            <div class="dash-row-name">James Moretti · VP Sales</div>
+            <div class="dash-row-action">Accepted connection · replied to message</div>
+          </div>
+          <span class="dash-tag replied">Replied</span>
+        </div>
+        <div class="dash-row">
+          <div class="dash-avatar">SK</div>
+          <div class="dash-row-content">
+            <div class="dash-row-name">Sarah Kim · CEO, Logistics Co</div>
+            <div class="dash-row-action">Connected · sequence step 2</div>
+          </div>
+          <span class="dash-tag connected">Connected</span>
+        </div>
+        <div class="dash-row">
+          <div class="dash-avatar">RT</div>
+          <div class="dash-row-content">
+            <div class="dash-row-name">Robert Torres · Founder</div>
+            <div class="dash-row-action">Message delivered · awaiting reply</div>
+          </div>
+          <span class="dash-tag opened">Sent</span>
+        </div>
+        <div class="dash-row">
+          <div class="dash-avatar">AL</div>
+          <div class="dash-row-content">
+            <div class="dash-row-name">Amy Li · Director of Ops</div>
+            <div class="dash-row-action">Replied to sequence · conversation started</div>
+          </div>
+          <span class="dash-tag replied">Booked ✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Stats bar ── -->
+<div class="stats-bar reveal">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num">LI</span><span class="stat-label">Social outreach — focused</span></div>
+    <div class="stat"><span class="stat-num">Free</span><span class="stat-label">Account setup included</span></div>
+    <div class="stat"><span class="stat-num">Human</span><span class="stat-label">Team behind your AI</span></div>
+    <div class="stat"><span class="stat-num">$199</span><span class="stat-label">Per month, one flat fee</span></div>
+    <div class="stat"><span class="stat-num">$0</span><span class="stat-label">Long-term contract</span></div>
+  </div>
+</div>
+
+<!-- ── How it works ── -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <span class="eyebrow reveal">How it works</span>
+    <h2 class="section-h reveal">AI does the outreach.<br>Humans make sure it works.</h2>
+    <p class="section-sub reveal">Social Lead Engine runs your social connection and messaging sequences on autopilot — with a real team from Hicks Marketing reviewing, adjusting, and keeping everything performing. <a href="https://help.lead-updates.com/" target="_blank" rel="noopener" style="color:var(--red-lt); text-decoration:underline; text-underline-offset:3px;">See the full platform walkthrough →</a></p>
+    <div class="how-steps reveal">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-step-title">We set up your account</div>
+        <div class="how-step-desc">Free account setup is included. Our team configures your social connection parameters, messaging sequences, and targeting — no tech headaches on your end.</div>
+      </div>
+      <div class="how-step highlight">
+        <div class="how-num">02</div>
+        <div class="how-step-title">AI runs your outreach</div>
+        <div class="how-step-desc">Automated connection requests go out daily to your ideal prospects. When they accept, a personalized messaging sequence starts — building the conversation naturally.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-step-title">Humans keep it dialed in</div>
+        <div class="how-step-desc">The Hicks Marketing team monitors your campaigns, catches anything that needs adjusting, and makes sure the AI is performing the way it should. You're never flying blind.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <div class="how-step-title">You take the conversations</div>
+        <div class="how-step-desc">When a prospect replies and shows genuine interest, that's your cue. We fill the top of the funnel. You close the deal. That's the division of labor that works.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <span class="eyebrow reveal">What's included</span>
+    <h2 class="section-h reveal">Focused on Social Outreach.<br>Backed by real people.</h2>
+    <p class="section-sub reveal">We don't offer every channel under the sun. We do social connection outreach and messaging sequences — and we do it with a human team making sure your AI is actually working.</p>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">LI</div>
+        <div class="feature-title">Social Connection Outreach</div>
+        <div class="feature-desc">Automated connection requests go out daily to your targeted ideal clients on social. Personalized, consistent, and running whether you're in meetings or on the road.</div>
+        <div class="feature-stat">Targeted by title, industry, company size</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">MS</div>
+        <div class="feature-title">Messaging Sequences</div>
+        <div class="feature-desc">When a prospect connects, a thoughtful multi-step messaging sequence starts automatically. Each message is crafted to start a real conversation — not pitch immediately.</div>
+        <div class="feature-stat">Built to start conversations, not spam</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">HM</div>
+        <div class="feature-title">Human Oversight + Support</div>
+        <div class="feature-desc">The Hicks Marketing team monitors your campaigns. If something's off — reply rates drop, a message needs tweaking, targeting needs adjusting — we catch it and fix it before it becomes a problem.</div>
+        <div class="feature-stat">Real team. Real accountability.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">SU</div>
+        <div class="feature-title">Free Account Setup</div>
+        <div class="feature-desc">We handle the initial configuration for you. Social account connection, sequence creation, targeting parameters — all set up by our team at no extra cost before you go live.</div>
+        <div class="feature-stat">Included — no setup fees</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">CR</div>
+        <div class="feature-title">Buzz Credits Included</div>
+        <div class="feature-desc">Your $199/month includes a full allocation of Buzz credits for running your social lead automation. No surprise overage fees — your monthly budget is predictable and straightforward.</div>
+        <div class="feature-stat">Flat monthly pricing, no surprises</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">EC</div>
+        <div class="feature-title">Want Your Content Too?</div>
+        <div class="feature-desc">Add social ghostwriting to your outreach and your content warms up prospects before your connection request even arrives. The combination is significantly more effective than either alone.</div>
+        <div class="feature-stat"><a href="https://3d2gj.share.hsforms.com/2zu6_ZSOXTRWmFcUdn9JFUg" target="_blank" rel="noopener" style="color:var(--red); text-decoration:underline; text-underline-offset:2px;">See our ghostwriting services →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Human aspect ── -->
+<section class="channels">
+  <div class="section-inner">
+    <div class="channels-grid reveal">
+      <div>
+        <span class="eyebrow">The human difference</span>
+        <h2 class="section-h">AI runs the sequences.<br>We run the AI.</h2>
+        <p class="section-sub" style="margin-bottom:1.5rem;">Most automation tools hand you a platform and wish you luck. We stay involved. The Hicks Marketing team is behind your account making sure the technology is doing what it's supposed to do — and stepping in when it isn't.</p>
+        <ul class="channel-list">
+          <div class="channel-item active">
+            <div class="channel-icon">01</div>
+            <div>
+              <div class="channel-name">We watch your campaign performance</div>
+              <div class="channel-desc">If connection acceptance rates drop or replies slow down, we notice before you do — and we make adjustments.</div>
+            </div>
+          </div>
+          <div class="channel-item">
+            <div class="channel-icon">02</div>
+            <div>
+              <div class="channel-name">We tune your messaging</div>
+              <div class="channel-desc">Messages that aren't resonating get rewritten. We use what's working to inform what we test next. It's an ongoing process, not a set-and-forget.</div>
+            </div>
+          </div>
+          <div class="channel-item">
+            <div class="channel-icon">03</div>
+            <div>
+              <div class="channel-name">We respond fast when you have questions</div>
+              <div class="channel-desc">Hicks Marketing is known for near-immediate response. If something feels off or you want to adjust strategy, you reach a real person — fast.</div>
+            </div>
+          </div>
+          <div class="channel-item">
+            <div class="channel-icon">04</div>
+            <div>
+              <div class="channel-name">We help you pair it with content</div>
+              <div class="channel-desc">Outreach works better when prospects already recognize your name. We can connect you with social ghostwriting that warms the market before the connection request arrives.</div>
+            </div>
+          </div>
+        </ul>
+      </div>
+      <div class="channel-visual">
+        <div class="channel-visual-title">Your social outreach sequence</div>
+        <div class="channel-seq">
+          <div class="seq-step">
+            <div class="seq-num">1</div>
+            <div class="seq-content">
+              <div class="seq-label">Connection request sent</div>
+              <div class="seq-detail">Day 1 · Targeted to your ideal client profile on social</div>
+            </div>
+          </div>
+          <div class="seq-connector"></div>
+          <div class="seq-step">
+            <div class="seq-num">2</div>
+            <div class="seq-content">
+              <div class="seq-label">Welcome message</div>
+              <div class="seq-detail">Day 2 after acceptance · Warm intro, value-first, no pitch</div>
+            </div>
+          </div>
+          <div class="seq-connector"></div>
+          <div class="seq-step">
+            <div class="seq-num">3</div>
+            <div class="seq-content">
+              <div class="seq-label">Follow-up message</div>
+              <div class="seq-detail">Day 5 · Relevant insight or question to open dialogue</div>
+            </div>
+          </div>
+          <div class="seq-connector"></div>
+          <div class="seq-step">
+            <div class="seq-num">4</div>
+            <div class="seq-content">
+              <div class="seq-label">Soft ask</div>
+              <div class="seq-detail">Day 10 · Natural invitation to connect further or explore fit</div>
+            </div>
+          </div>
+          <div class="seq-connector"></div>
+          <div class="seq-step">
+            <div class="seq-num">★</div>
+            <div class="seq-content">
+              <div class="seq-label">Human monitors + optimizes throughout</div>
+              <div class="seq-detail">Hicks Marketing team adjusts based on real performance data</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Other services ── -->
+<section style="background:var(--off); padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Also from Hicks Marketing</span>
+    <h2 class="section-h reveal">Build the full picture.</h2>
+    <p class="section-sub reveal">Outreach gets your name in front of people. Content makes them want to respond. Combine both and your social presence becomes your best salesperson.</p>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;" class="reveal">
+
+      <div style="background:var(--white); border:1px solid var(--rule); border-radius:3px; overflow:hidden; transition:border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--rule)';this.style.transform='translateY(0)'">
+        <div style="background:var(--red); padding:1.5rem;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:#fff; letter-spacing:1px;">Social Ghostwriting</div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px;">Social Ghostwriting Services</div>
+        </div>
+        <div style="padding:1.5rem;">
+          <p style="font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:1.25rem;">Done-for-you social content written in your voice. We extract your expertise on one call and write a month of posts that sound exactly like you. Pairs perfectly with outreach.</p>
+          <a href="https://3d2gj.share.hsforms.com/2zu6_ZSOXTRWmFcUdn9JFUg" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--red); display:flex; align-items:center; gap:6px;">Learn more →</a>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:2px solid var(--ink); border-radius:3px; overflow:hidden; transition:border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--ink)';this.style.transform='translateY(0)'">
+        <div style="background:var(--ink); padding:1.5rem; position:relative;">
+          <div style="position:absolute; top:-1px; right:1rem; background:var(--red); color:#fff; font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:1px; padding:3px 10px;">Free resource</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:#fff; letter-spacing:1px; margin-top:0.5rem;">Expert EEC Guide</div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px;">stopblendingin.com</div>
+        </div>
+        <div style="padding:1.5rem;">
+          <p style="font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:1.25rem;">Want to learn how to create content yourself before going done-for-you? Our free Expert Email Course gives you the framework, prompts, and system to build your own thought leadership engine.</p>
+          <a href="https://stopblendingin.com/" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--red); display:flex; align-items:center; gap:6px;">Get the free EEC →</a>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--rule); border-radius:3px; overflow:hidden; transition:border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--rule)';this.style.transform='translateY(0)'">
+        <div style="background:var(--dark); padding:1.5rem;">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:#fff; letter-spacing:1px;">Book a Call</div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px;">hireastopblendingin.com</div>
+        </div>
+        <div style="padding:1.5rem;">
+          <p style="font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:1.25rem;">Ready to talk about a fully custom setup — outreach plus content, strategy, and ongoing support? Book a warm discovery call directly with the Hicks Marketing team.</p>
+          <a href="https://hireasocialghostwriter.com" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--red); display:flex; align-items:center; gap:6px;">Book a call →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Pricing ── -->
+<section class="pricing-sec" id="pricing">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Pricing</span>
+    <h2 class="section-h reveal">One plan. One price.<br>No surprises.</h2>
+    <p class="section-sub reveal">Social connection outreach and messaging sequences, with free account setup and human support from the Hicks Marketing team. Flat monthly fee, no contracts.</p>
+    <div style="max-width:560px;" class="reveal">
+      <div style="background:var(--panel); border:1px solid rgba(255,255,255,0.08); border-radius:4px; overflow:hidden;">
+        <div style="background:var(--red); padding:2rem 2.5rem;">
+          <div style="font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.6); margin-bottom:0.75rem;">Growth plan · everything included</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:4rem; letter-spacing:2px; color:#fff; line-height:1;">$199<span style="font-family:'DM Sans',sans-serif; font-size:15px; font-weight:300; color:rgba(255,255,255,0.6); letter-spacing:0;">/month</span></div>
+          <p style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:0.75rem; line-height:1.5;">Social connection outreach + messaging sequences, backed by real human support. No setup fees. No long-term contract.</p>
+        </div>
+        <div style="padding:2rem 2.5rem;">
+          <ul style="list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:0;">
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>Buzz credits included</li>
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>Social lead automation</li>
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>Social messaging sequences</li>
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>Free account setup</li>
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>Human campaign monitoring</li>
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>Hicks Marketing support</li>
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>No long-term contract</li>
+            <li style="font-size:12px; color:rgba(255,255,255,0.55); padding:7px 0; display:flex; gap:8px;"><span style="color:var(--red-lt); font-size:11px; flex-shrink:0;">✓</span>Cancel anytime</li>
+          </ul>
+          <a href="https://app.hicksmarketing.com/" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:1.5rem; background:var(--white); color:var(--red); padding:14px; border-radius:2px; font-family:'DM Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:1px; transition:opacity 0.15s;">Start easy →</a>
+        </div>
+      </div>
+      <p style="font-size:13px; color:rgba(255,255,255,0.3); margin-top:1.25rem; padding:0 0.5rem;">Want to add social content ghostwriting? <a href="https://3d2gj.share.hsforms.com/2zu6_ZSOXTRWmFcUdn9JFUg" target="_blank" rel="noopener" style="color:var(--red-lt); text-decoration:underline; text-underline-offset:3px;">Learn about our ghostwriting services →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Upgrade CTA ── -->
+
+<!-- ── Testimonials ── -->
+<section class="testimonials">
+  <div class="section-inner">
+    <span class="eyebrow reveal">What users say</span>
+    <h2 class="section-h reveal">Sales pros who run<br>on Social Lead Engine.</h2>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <p class="testi-quote">"I have closed $75k+ in new business using this platform — it has changed the way I book meetings and engage prospects. The social outreach approach is a completely different level."</p>
+        <div class="testi-name">Carl P.</div>
+        <div class="testi-role">Financial Services · Canada</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"I use it to connect with hard-to-reach prospects and generate millions in pipeline. It ensures the right tone of voice and allows me to grow my social connections by reaching 15-25 new contacts daily."</p>
+        <div class="testi-name">Verified G2 User</div>
+        <div class="testi-role">B2B Sales · Enterprise</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"I love how easy it is to create campaigns, how the lead generation strategy is actually working, and how everything I need is in one place. My account manager showed me things I didn't know were possible."</p>
+        <div class="testi-name">Verified G2 User</div>
+        <div class="testi-role">B2B Sales · SMB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="final-cta" id="contact">
+  <span class="eyebrow">Get started</span>
+  <h2 class="section-h">Your social outreach<br>starts today.</h2>
+  <p class="cta-sub">One flat fee. Free setup. A real team behind your AI making sure it runs right. No contracts, no guesswork — just social outreach that works.</p>
+  <div class="cta-actions">
+    <a href="https://app.hicksmarketing.com/" target="_blank" rel="noopener" class="btn-white">Start easy →</a>
+    <a href="https://3d2gj.share.hsforms.com/2zu6_ZSOXTRWmFcUdn9JFUg" target="_blank" rel="noopener" class="btn-wh-outline">Talk to our team</a>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Social<span>Lead</span>Engine</div>
+      <p class="footer-tagline">Social connection outreach and messaging sequences — with a real human team keeping your AI running right. A Hicks Marketing and Revenue Solutions company.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Platform</div>
+      <ul class="footer-links">
+        <li><a href="#features">What's included</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing — $199/mo</a></li>
+        <li><a href="https://app.hicksmarketing.com/" target="_blank" rel="noopener">Start easy →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Our network</div>
+      <ul class="footer-links">
+        <li><a href="https://3d2gj.share.hsforms.com/2zu6_ZSOXTRWmFcUdn9JFUg" target="_blank" rel="noopener">Social Ghostwriting Services</a></li>
+        <li><a href="https://stopblendingin.com/" target="_blank" rel="noopener">Free EEC Guide</a></li>
+        <li><a href="https://hireasocialghostwriter.com" target="_blank" rel="noopener">Book a discovery call</a></li>
+        <li><a href="https://hicksmarketing.com" target="_blank" rel="noopener">HicksMarketing.com</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Support</div>
+      <ul class="footer-links">
+        <li><a href="https://help.lead-updates.com/" target="_blank" rel="noopener">Platform help docs</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#630a0d050c230b0a0008100e02110806170a0d044d000c0e">Contact us</a></li>
+        <li><a href="https://3d2gj.share.hsforms.com/2zu6_ZSOXTRWmFcUdn9JFUg" target="_blank" rel="noopener">Talk to our team</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 SocialLeadEngine.com · Powered by Hicks Marketing and Revenue Solutions</span>
+    <span class="footer-copy">Social outreach. Human-managed. AI-powered.</span>
+  </div>
+</footer>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.channel-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.
